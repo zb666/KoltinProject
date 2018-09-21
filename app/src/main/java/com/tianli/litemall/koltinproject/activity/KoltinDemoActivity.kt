@@ -3,6 +3,7 @@ package com.tianli.litemall.koltinproject.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Gravity.AXIS_SPECIFIED
 import android.view.View
 import com.bumptech.glide.Glide
 import com.tianli.litemall.koltinproject.R
@@ -14,6 +15,11 @@ class KoltinDemoActivity : AppCompatActivity(), View.OnClickListener {
 
     val mList: ArrayList<String> = ArrayList()
 
+    val a: Int = AXIS_SPECIFIED
+
+    //可以不使用
+    val string = "string"
+
     override fun onClick(v: View?) {
         if (tvKoltin != null) {
             Glide.with(this)
@@ -22,7 +28,7 @@ class KoltinDemoActivity : AppCompatActivity(), View.OnClickListener {
 
             mList.add("厉害了，我的哥")
             for (s in mList) {
-                Log.d("Bob",s)
+                Log.d("Bob", "" + (a == 1))
             }
         }
     }
@@ -32,8 +38,6 @@ class KoltinDemoActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.koltin_demo)
         tvKoltin.setOnClickListener(this)
     }
-
-
 
 
 }
