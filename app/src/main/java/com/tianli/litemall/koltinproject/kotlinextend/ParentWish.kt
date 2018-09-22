@@ -1,8 +1,8 @@
 package com.tianli.litemall.koltinproject.kotlinextend
 
-import android.util.Log
 import com.tianli.litemall.koltinproject.LogUtils
 
+//多线程并发
 class ParentWish: IWish by SonWish(){
 
 //    override fun wish() {
@@ -10,7 +10,6 @@ class ParentWish: IWish by SonWish(){
 //
 //        //如果想保留之前方法的特性 ，可以这样写 SonWish().wish()
 //    }
-
 
     override fun wish() {
         LogUtils.showLog("\nparent")

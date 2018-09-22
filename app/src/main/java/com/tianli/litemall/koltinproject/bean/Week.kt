@@ -1,4 +1,6 @@
 package com.tianli.litemall.koltinproject.bean
 
-class Week {
+enum class Week {
+
+    星期一,星期二,星期三
 }
