@@ -3,10 +3,10 @@ package com.tianli.litemall.koltinproject
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.tianli.litemall.koltinproject.bean.KoltinJava
-import com.tianli.litemall.koltinproject.bean.WashMachine
-import com.tianli.litemall.koltinproject.bean.Week
+import com.tianli.litemall.koltinproject.bean.*
+import com.tianli.litemall.koltinproject.kotlinextend.IWish
 import com.tianli.litemall.koltinproject.kotlinextend.ParentWish
+import com.tianli.litemall.koltinproject.kotlinextend.SonWish
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-     fun runKoltin() {
+    //Unit是返回值 可以不写
+     fun runKoltin():Unit{
         //参数也是 需要申明可空和非可空
         val washMachine = WashMachine("Haier", 1)
         washMachine.openDoor()
-
 
         val koltinJava = KoltinJava("name",123)
         koltinJava.name
@@ -42,6 +42,13 @@ class MainActivity : AppCompatActivity() {
          Week.星期一.ordinal//枚举类型中的哪个元素
          Week.星期一.name
 
+        SingleCase.instance
+        var parentWish= SonWish
+        var house = listOf<IWish>(parentWish)
+
+
+        var singleCase = Single
+        var sss = Single
 
     }
 
