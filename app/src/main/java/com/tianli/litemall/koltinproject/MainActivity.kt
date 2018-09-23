@@ -13,6 +13,10 @@ class MainActivity : AppCompatActivity() {
     val a: Int? = 1
     val b: Int? = 3
 
+    //初始化的代码块
+    init {
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,6 +42,33 @@ class MainActivity : AppCompatActivity() {
         val koltinJava = KoltinJava("name",123)
         koltinJava.name
         koltinJava.age
+
+        //安全调用在链式调用中很有用。如：只要有一环就出现空 就会返回空
+        val finaCheckResult = koltinJava?.name?.hashCode()
+        //表示的是数据可以用空类型来承载
+        koltinJava?.name
+
+
+        if (finaCheckResult!=0){
+            val checkResult = finaCheckResult
+        }
+
+
+        if (koltinJava is KoltinJava){
+
+        }
+
+
+        /**
+         * 表示不为NULL则调用age熟悉
+         */
+        koltinJava?.age
+        /**
+         * 还有个非常愚蠢的语法
+         * 不为NUll就获取属性，为Null就抛出异常
+         */
+        koltinJava!!.name
+
         LogUtils.showLog(koltinJava.name+koltinJava.age+WashMachine.name+WashMachine.number)
 
          Week.星期一.ordinal//枚举类型中的哪个元素
