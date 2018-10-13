@@ -12,12 +12,19 @@ import com.tianli.litemall.koltinproject.LogUtils
 import com.tianli.litemall.koltinproject.R
 import com.tianli.litemall.koltinproject.adapter.MultipleItem
 import com.tianli.litemall.koltinproject.adapter.MultipleItemQuickAdapter
+import com.tianli.litemall.koltinproject.adapter.ViewPagerAdapter
+import com.tianli.litemall.koltinproject.kotlinextend.IWish
 import com.tianli.litemall.koltinproject.kotlinshare.kotlinSta
 import com.tianli.litemall.koltinproject.view.VertiLL
+import kotlinx.android.synthetic.main.activity_test.*
 
 import java.util.ArrayList
 
-class PopActivity : AppCompatActivity(), View.OnClickListener {
+class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
+
+    override fun wish() {
+        LogUtils.showLog("show things")
+    }
 
     private var btProduce: Button? = null
     private var btConsume: Button? = null
@@ -37,7 +44,6 @@ class PopActivity : AppCompatActivity(), View.OnClickListener {
 
         btConsume!!.setOnClickListener(this)
         btProduce!!.setOnClickListener(this)
-
         val recyclerView = findViewById<RecyclerView>(R.id.rv)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -47,15 +53,15 @@ class PopActivity : AppCompatActivity(), View.OnClickListener {
         list.add(multipleItem)
         list.add(multipleItem)
         val itemQuickAdapter = MultipleItemQuickAdapter(list)
-
         //        recyclerView.setAdapter(itemQuickAdapter);
-
 
         val vertiLL = VertiLL(this)
 
         linearLayout.addView(vertiLL)
 
-
+        vertiLL.setOnClickListener {
+            val sA = kotlinSta.sA()
+        }
 
         threadA = object : Thread("A") {
             override fun run() {
@@ -72,12 +78,44 @@ class PopActivity : AppCompatActivity(), View.OnClickListener {
 
         val sA = kotlinSta.sA()
 
-
         kotlinSta.sB()
 
         var listzb = ArrayList<String>()
         listzb.add("1")
 
+
+        listzb.apply {
+            add("1")
+        }
+
+        with(listzb){
+
+            add("1")
+            add("2")
+                    add("")
+            println("this = " + this)
+        }.let {
+            println()
+        }
+
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        viewpager.adapter = viewPagerAdapter
+
+        var listArray = ArrayList<String>()
+
+
+        with(listArray){
+            add("zhoubo666")
+            add("如果黎明未出现 是因为还未到过最黑暗处")
+        }
+
+        viewPagerAdapter.setData(listArray)
+
+
+    }
+
+
+    fun setIWish(){
 
     }
 

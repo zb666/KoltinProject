@@ -4,6 +4,8 @@ import com.tianli.litemall.koltinproject.LogUtils
 
 open class kotlinSta {
 
+    val string = ""
+
     companion object {
         fun sA(): String {
             LogUtils.showLog("show AAA")
