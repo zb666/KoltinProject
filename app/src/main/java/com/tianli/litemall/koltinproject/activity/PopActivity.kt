@@ -15,7 +15,7 @@ import com.tianli.litemall.koltinproject.adapter.MultipleItemQuickAdapter
 import com.tianli.litemall.koltinproject.adapter.ViewPagerAdapter
 import com.tianli.litemall.koltinproject.kotlinextend.IWish
 import com.tianli.litemall.koltinproject.kotlinshare.kotlinSta
-import com.tianli.litemall.koltinproject.view.VertiLL
+import com.tianli.litemall.koltinproject.kotlinview.VertiLL
 import kotlinx.android.synthetic.main.activity_test.*
 
 import java.util.ArrayList
@@ -99,6 +99,10 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
         }
 
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+
+
+
+
         viewpager.adapter = viewPagerAdapter
 
         var listArray = ArrayList<String>()

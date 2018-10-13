@@ -1,4 +1,4 @@
-package com.tianli.litemall.koltinproject.view
+package com.tianli.litemall.koltinproject.kotlinview
 
 import android.content.Context
 import android.util.AttributeSet

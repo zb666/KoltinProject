@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.tianli.litemall.koltinproject.LogUtils
 import com.tianli.litemall.koltinproject.R
 import kotlinx.android.synthetic.main.one_fm.*
 
@@ -21,6 +22,9 @@ class OneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         textview.text = oneString
+        textview.setOnClickListener {
+            LogUtils.showLog("显示数据")
+        }
     }
 
 
