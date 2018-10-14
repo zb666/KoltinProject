@@ -19,12 +19,14 @@ public class GetSegmentView extends View {
     private PathMeasure mPathMeasure;
     private Path mDstPath;
 
+    float start = 0;
+
     public GetSegmentView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public GetSegmentView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public GetSegmentView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -33,7 +35,7 @@ public class GetSegmentView extends View {
     }
 
     private void init() {
-        setLayerType(LAYER_TYPE_SOFTWARE,null);
+        setLayerType(LAYER_TYPE_SOFTWARE, null);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -43,12 +45,12 @@ public class GetSegmentView extends View {
 
         //画圆
         mCirclePath = new Path();
-        mCirclePath.addCircle(100,100,50,Path.Direction.CW);
+        mCirclePath.addCircle(100, 100, 50, Path.Direction.CW);
 
         mDstPath = new Path();
-        mPathMeasure = new PathMeasure(mCirclePath,true);
+        mPathMeasure = new PathMeasure(mCirclePath, true);
 
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0,1);
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -68,12 +70,20 @@ public class GetSegmentView extends View {
         canvas.drawColor(Color.WHITE);
 
         float endValue = mPathMeasure.getLength() * mCurAnimValue;
+        float length = mPathMeasure.getLength();
 
         mDstPath.reset();
 
-        //---开始点到结束点，设置为true表示的是路径的绘制是连续的
-        mPathMeasure.getSegment(0,endValue,mDstPath,true);
-        canvas.drawPath(mDstPath,mPaint);
-//        canvas.drawText(""+mCurAnimValue,200,100,mPaint);
+        float startValue = (float) (endValue - ((0.5 - Math.abs(mCurAnimValue - 0.5))) * length);
+
+        if (mCurAnimValue<0.5){
+            startValue = 0;
+        }else {
+            startValue = 2*mCurAnimValue-1;
+        }
+
+        mPathMeasure.getSegment(startValue, endValue, mDstPath, true);
+        canvas.drawPath(mDstPath, mPaint);
+
     }
 }
