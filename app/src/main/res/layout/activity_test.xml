@@ -38,31 +38,31 @@
         android:layout_height="120dp" />
 
     <com.tianli.litemall.koltinproject.kotlinview.FlowLayout
-        android:background="@color/colorAccent"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:background="@color/colorAccent">
 
         <TextView
-            android:background="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="aaaaa" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="@dimen/dp_40"
             android:background="@color/colorPrimary"
+            android:gravity="center"
             android:text="bbb" />
 
         <TextView
-            android:layout_marginTop="@dimen/dp_40"
-            android:background="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:text="ccccc" />
 

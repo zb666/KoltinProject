@@ -31,18 +31,20 @@ class FlowLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet
         var finalHieght = 0
         var finalWidth = 0
 
+        var topMargin: Int = 0;
         val childCount = childCount
         for (i in 0 until childCount) {
             val childView = getChildAt(i)
             //measure之后就可以获取到自己的尺寸了
             measureChild(childView, widthMeasureSpec, heightMeasureSpec)
 
-//            val marginLayoutParams = childView.layoutParams as MarginLayoutParams
-//            val topMargin = marginLayoutParams.topMargin
+            val marginLayoutParams = childView.layoutParams
+            if (marginLayoutParams is MarginLayoutParams) {
+                topMargin = marginLayoutParams.topMargin
+            }
 
             val childHeight = childView.measuredHeight
             val childWidth = childView.measuredWidth
-
             finalWidth = Math.max(finalWidth, childWidth)
 
             finalHieght += childHeight
