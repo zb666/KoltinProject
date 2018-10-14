@@ -30,7 +30,14 @@
             app:layout_constraintLeft_toRightOf="@+id/tv111"
             app:layout_constraintRight_toRightOf="parent" />
 
+
     </android.support.constraint.ConstraintLayout>
+
+
+    <com.tianli.litemall.koltinproject.kotlinview.GetSegmentView
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
     <com.tianli.litemall.koltinproject.kotlinview.MyViewPager
         android:id="@+id/viewpager"

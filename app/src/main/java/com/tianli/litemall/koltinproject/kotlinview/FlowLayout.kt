@@ -26,32 +26,21 @@ class FlowLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet
         val heightMode = View.MeasureSpec.getMode(heightMeasureSpec)
         val heightSize = View.MeasureSpec.getSize(heightMeasureSpec)
 
-        LogUtils.showLog("width " + widthMeasureSpec + "height " + heightMeasureSpec);
+        var finalHeight: Int = 0
+        var finalWidth: Int = 0
 
-        var finalHieght = 0
-        var finalWidth = 0
 
-        var topMargin: Int = 0;
-        val childCount = childCount
         for (i in 0 until childCount) {
             val childView = getChildAt(i)
-            //measure之后就可以获取到自己的尺寸了
-            measureChild(childView, widthMeasureSpec, heightMeasureSpec)
-
-            val marginLayoutParams = childView.layoutParams
-            if (marginLayoutParams is MarginLayoutParams) {
-                topMargin = marginLayoutParams.topMargin
-            }
-
-            val childHeight = childView.measuredHeight
-            val childWidth = childView.measuredWidth
-            finalWidth = Math.max(finalWidth, childWidth)
-
-            finalHieght += childHeight
+            measureChild(childView,widthMeasureSpec,heightMeasureSpec)
+            val measuredHeight = childView.measuredHeight
+            val measuredWidth = childView.measuredWidth
+            finalWidth = Math.max(finalWidth, measuredWidth)
+            finalHeight += measuredHeight
+//            childView.measure(widthMeasureSpec,heightMeasureSpec)
         }
-        //EXACTLY  当开发者指定确切的数值之后，我们不能够再进行更改 1来不建议我们进行更改 2来测量的销量会比较高 match 拿来就用 wrap 需要自己再次进行计算
 
-        setMeasuredDimension(if (widthMode == View.MeasureSpec.EXACTLY) widthSize else finalWidth, if (heightMode == View.MeasureSpec.EXACTLY) heightSize else finalHieght)
+        setMeasuredDimension(widthSize,finalHeight)
 
     }
 
