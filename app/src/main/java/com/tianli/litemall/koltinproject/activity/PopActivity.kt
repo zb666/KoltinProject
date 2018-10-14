@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-
 import com.tianli.litemall.koltinproject.LogUtils
 import com.tianli.litemall.koltinproject.R
 import com.tianli.litemall.koltinproject.adapter.MultipleItem
@@ -15,10 +14,10 @@ import com.tianli.litemall.koltinproject.adapter.MultipleItemQuickAdapter
 import com.tianli.litemall.koltinproject.adapter.ViewPagerAdapter
 import com.tianli.litemall.koltinproject.kotlinextend.IWish
 import com.tianli.litemall.koltinproject.kotlinshare.kotlinSta
+import com.tianli.litemall.koltinproject.kotlinview.GetSegmentView
 import com.tianli.litemall.koltinproject.kotlinview.VertiLL
 import kotlinx.android.synthetic.main.activity_test.*
-
-import java.util.ArrayList
+import java.util.*
 
 class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
 
@@ -88,11 +87,11 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
             add("1")
         }
 
-        with(listzb){
+        with(listzb) {
 
             add("1")
             add("2")
-                    add("")
+            add("")
             println("this = " + this)
         }.let {
             println()
@@ -108,7 +107,7 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
         var listArray = ArrayList<String>()
 
 
-        with(listArray){
+        with(listArray) {
             add("zhoubo666")
             add("如果黎明未出现 是因为还未到过最黑暗处")
         }
@@ -119,7 +118,7 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
     }
 
 
-    fun setIWish(){
+    fun setIWish() {
 
     }
 
@@ -153,5 +152,10 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
             mList.add("任意的数据")
             //唤醒的是当前等待队列中的线程 并不一定是当前的线程，是根据等待队列中的线程来进行计算的
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        findViewById<GetSegmentView>(R.id.getsegment).recycle()
     }
 }

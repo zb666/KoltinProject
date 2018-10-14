@@ -19,7 +19,8 @@ public class GetSegmentView extends View {
     private PathMeasure mPathMeasure;
     private Path mDstPath;
 
-    float start = 0;
+    float startValue = 0;
+    private ValueAnimator valueAnimator;
 
     public GetSegmentView(Context context) {
         this(context, null);
@@ -39,8 +40,8 @@ public class GetSegmentView extends View {
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(6);
-        mPaint.setColor(Color.GREEN);
+        mPaint.setStrokeWidth(3);
+        mPaint.setColor(Color.BLUE);
         mPaint.setTextSize(30);
 
         //画圆
@@ -50,7 +51,7 @@ public class GetSegmentView extends View {
         mDstPath = new Path();
         mPathMeasure = new PathMeasure(mCirclePath, true);
 
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);
+        valueAnimator = ValueAnimator.ofFloat(0, 1);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -59,31 +60,37 @@ public class GetSegmentView extends View {
                 invalidate();
             }
         });
-        valueAnimator.setDuration(3000);
+        valueAnimator.setDuration(2000);
         valueAnimator.start();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         canvas.drawColor(Color.WHITE);
-
         float endValue = mPathMeasure.getLength() * mCurAnimValue;
-        float length = mPathMeasure.getLength();
 
+        //每次重绘的时候都需要重新设置路径
         mDstPath.reset();
 
-        float startValue = (float) (endValue - ((0.5 - Math.abs(mCurAnimValue - 0.5))) * length);
-
-        if (mCurAnimValue<0.5){
+        if (mCurAnimValue < 0.5) {
             startValue = 0;
-        }else {
-            startValue = 2*mCurAnimValue-1;
+        } else {
+            startValue = 2 * mCurAnimValue - 1;
         }
-
-        mPathMeasure.getSegment(startValue, endValue, mDstPath, true);
+        //startD 表示绘制   path的起点到绘制开始的点的距离  endvalue表示的是path的起点到绘制结束的点的距离
+        mPathMeasure.getSegment(startValue * mPathMeasure.getLength(), endValue, mDstPath, true);
         canvas.drawPath(mDstPath, mPaint);
-
     }
+
+
+    public void recycle() {
+        if (valueAnimator != null) {
+            synchronized (this) {
+                valueAnimator.cancel();
+                valueAnimator = null;
+            }
+        }
+    }
+
 }
