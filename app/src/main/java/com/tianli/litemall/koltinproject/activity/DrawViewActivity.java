@@ -17,6 +17,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.tianli.litemall.koltinproject.MainActivity;
 import com.tianli.litemall.koltinproject.R;
@@ -43,9 +44,17 @@ public class DrawViewActivity extends AppCompatActivity {
         findViewById(R.id.textview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                   startAdd();
             }
         });
+    }
+
+    private void startAdd() {
+        BeizerWaveView beizerWaveView = new BeizerWaveView(this);
+        LinearLayout linearLayout = findViewById(R.id.llContainer);
+        linearLayout.addView(beizerWaveView);
+        beizerWaveView.setWaveColor();
+        beizerWaveView.startAnim();
     }
 
     private void startJump() {

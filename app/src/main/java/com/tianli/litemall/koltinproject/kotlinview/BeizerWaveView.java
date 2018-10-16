@@ -80,4 +80,8 @@ public class BeizerWaveView extends View {
         valueAnimator.start();
     }
 
+    public void setWaveColor(){
+        mPaint.setColor(Color.BLUE);
+    }
+
 }
