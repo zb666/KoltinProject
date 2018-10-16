@@ -44,6 +44,10 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
 
         btConsume!!.setOnClickListener(this)
         btProduce!!.setOnClickListener(this)
+
+        btProduce?.setOnClickListener({
+
+        })
         val recyclerView = findViewById<RecyclerView>(R.id.rv)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -82,7 +86,7 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
 
         //这是开区间
         for (i in 0..100) {
-            //? 空的话就什么都不做，不然的话就进行toString类型的转化
+            //? 空的话就返回null数据类型，不然的话就进行toString类型的转化
             println(i?.toString())
         }
 
@@ -100,6 +104,8 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
         }
 
         val sA = kotlinSta.sA()
+
+        var l= sA?.length//如果s为null，则不执行length方法
 
         kotlinSta.sB()
 
