@@ -25,7 +25,8 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
         LogUtils.showLog("show things")
     }
 
-    private var btProduce: Button? = null
+    //延迟的初始化 这样的话就不用处处进行数据类型的,空类型检查了    !!!但是这里就相当于说你要自行保证每次button使用的时候都不会有初始化报错的风险
+    private lateinit var btProduce: Button
     private var btConsume: Button? = null
 
     private val sObjLock = Any()
