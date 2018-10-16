@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <com.tianli.litemall.koltinproject.kotlinview.CanvasView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textview"
-        android:text="界面Jump"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40" />
+        <com.tianli.litemall.koltinproject.kotlinview.BeizerWaveView
+            android:id="@+id/beizerView"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="200dp"
+            android:layout_height="100dp" />
+
+        <com.tianli.litemall.koltinproject.kotlinview.CanvasView
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:gravity="center"
+            android:text="界面Jump" />
 
 
-    <ImageView
-        android:id="@+id/imageview"
-        android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import com.tianli.litemall.koltinproject.MainActivity;
 import com.tianli.litemall.koltinproject.R;
+import com.tianli.litemall.koltinproject.kotlinview.BeizerWaveView;
 
 public class DrawViewActivity extends AppCompatActivity {
 
@@ -35,6 +36,9 @@ public class DrawViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawview);
         imageView = findViewById(R.id.imageview);
+
+        BeizerWaveView beizerWaveView = findViewById(R.id.beizerView);
+        beizerWaveView.startAnim();
 
         findViewById(R.id.textview).setOnClickListener(new View.OnClickListener() {
             @Override
