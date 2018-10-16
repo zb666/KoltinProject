@@ -35,6 +35,7 @@ public class DrawViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawview);
         imageView = findViewById(R.id.imageview);
+
         findViewById(R.id.textview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

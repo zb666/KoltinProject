@@ -38,7 +38,6 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-
         val linearLayout = findViewById<LinearLayout>(R.id.ll_container)
         btProduce = findViewById(R.id.tv_produce)
         btConsume = findViewById(R.id.tv_consume)
@@ -70,6 +69,29 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
                 pop()
             }
         }
+
+        var a = 100
+        var b = 80
+
+        var c = if (a > b) {
+            a
+        } else {
+            b
+        }
+        var aaa = "" + a.toString()
+
+        //这是开区间
+        for (i in 0..100) {
+            //? 空的话就什么都不做，不然的话就进行toString类型的转化
+            println(i?.toString())
+        }
+
+
+        for (i in 0 until 100) {
+
+        }
+
+
         threadB = object : Thread("B") {
             override fun run() {
                 super.run()
