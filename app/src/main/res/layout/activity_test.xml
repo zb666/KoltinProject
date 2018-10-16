@@ -33,6 +33,9 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <com.tianli.litemall.koltinproject.kotlinview.TextSelfView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40" />
 
     <com.tianli.litemall.koltinproject.kotlinview.GetSegmentView
         android:id="@+id/getsegment"

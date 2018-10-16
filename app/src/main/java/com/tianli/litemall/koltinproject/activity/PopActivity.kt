@@ -37,6 +37,8 @@ class PopActivity : AppCompatActivity(), View.OnClickListener, IWish {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
+
+
         val linearLayout = findViewById<LinearLayout>(R.id.ll_container)
         btProduce = findViewById(R.id.tv_produce)
         btConsume = findViewById(R.id.tv_consume)
