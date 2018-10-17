@@ -1,15 +1,24 @@
 package com.tianli.litemall.koltinproject.kotlinview;
 
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Xfermode;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+
+import com.tianli.litemall.koltinproject.R;
 
 public class BeizerWaveView extends View {
 
@@ -19,6 +28,7 @@ public class BeizerWaveView extends View {
     private int mItemWaveLength = 1000;
 
     private float mWaveDx = 0;
+    private Bitmap mTopBitmap, mBottomBitmap;
 
     public BeizerWaveView(Context context) {
         this(context, null);
@@ -40,9 +50,15 @@ public class BeizerWaveView extends View {
         mPaint.setStrokeWidth(15);
 
         mWavePath = new Path();
+        //禁用硬件加速
+        setLayerType(View.LAYER_TYPE_NONE, null);
+
+        mTopBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_footer_loading);
+        mBottomBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_arrow);
 
     }
 
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -63,6 +79,31 @@ public class BeizerWaveView extends View {
         mWavePath.lineTo(0, getHeight());
         mWavePath.close();
         canvas.drawPath(mWavePath, mPaint);
+
+        int layerId = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
+
+        int width = getWidth() / 2;
+        int height = width * mTopBitmap.getHeight() / mTopBitmap.getWidth();
+
+        canvas.drawBitmap(mTopBitmap, null, new Rect(0, 0, width, height), mPaint);
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+        canvas.restoreToCount(layerId);
+
+        //下面是xfermode的绘制的流程步骤
+        // 1 获取到xfermode的宽高 2 设置离屏缓冲的id 3 绘制底部的图层 4 xfermode设置图层混合的模式  5 设置需要和源文件图片合成的图层 6 还原之前离屏缓冲的图层
+
+        int originalWidth = getWidth()/2;
+        int original = originalWidth * mTopBitmap.getHeight() / mTopBitmap.getWidth();
+        //这里代表 开始绘制xfermode相关的图层
+        int layerSavedId = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
+
+        canvas.drawBitmap(mTopBitmap,null,new Rect(0,0,width,height),mPaint);
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+
+        canvas.drawBitmap(mBottomBitmap,null,new Rect(0,0,width,height),mPaint);
+
+        canvas.restoreToCount(layerSavedId);
+
     }
 
     public void startAnim() {
@@ -80,7 +121,7 @@ public class BeizerWaveView extends View {
         valueAnimator.start();
     }
 
-    public void setWaveColor(){
+    public void setWaveColor() {
         mPaint.setColor(Color.BLUE);
     }
 

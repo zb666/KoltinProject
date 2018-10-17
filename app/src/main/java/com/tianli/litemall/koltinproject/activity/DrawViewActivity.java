@@ -23,6 +23,8 @@ import com.tianli.litemall.koltinproject.MainActivity;
 import com.tianli.litemall.koltinproject.R;
 import com.tianli.litemall.koltinproject.kotlinview.BeizerWaveView;
 
+import java.lang.ref.WeakReference;
+
 public class DrawViewActivity extends AppCompatActivity {
 
 //    private static final int CHOOSE_PHONE = 0x12;
