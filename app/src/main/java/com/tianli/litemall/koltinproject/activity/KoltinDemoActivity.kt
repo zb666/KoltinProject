@@ -26,6 +26,8 @@ class KoltinDemoActivity : AppCompatActivity(), View.OnClickListener {
             for (s in mList) {
                 Log.d("Bob", s)
             }
+        }else if (v == ivKoltin){
+
         }
 
         runKoltin()

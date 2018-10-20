@@ -10,6 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.tianli.litemall.koltinproject.kotlinview.EraseViewMul
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_72" />
+
         <com.tianli.litemall.koltinproject.kotlinview.BeizerWaveView
             android:id="@+id/beizerView"
             android:layout_gravity="center_horizontal"
