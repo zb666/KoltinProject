@@ -27,8 +27,6 @@ class BeizierView @JvmOverloads constructor(context: Context, attrs: AttributeSe
             this!!.color = Color.RED
             strokeWidth = 4F
         }
-
-
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {

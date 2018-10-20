@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.tianli.litemall.koltinproject.MainActivity;
 import com.tianli.litemall.koltinproject.R;
@@ -34,6 +35,7 @@ public class DrawViewActivity extends AppCompatActivity {
     private static final int CHOOSE_PHONE = 2;
     private ImageView imageView;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +48,12 @@ public class DrawViewActivity extends AppCompatActivity {
         findViewById(R.id.textview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                   startAdd();
+                startAdd();
             }
         });
+
+        beizerWaveView.setWaveColor();
+
     }
 
     private void startAdd() {
@@ -68,7 +73,7 @@ public class DrawViewActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case TAKE_PHONE:
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
 
                 }
                 break;
@@ -76,12 +81,10 @@ public class DrawViewActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * 自动获取相机权限
      */
     private void autoObtainCameraPermission() {
-
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {   //权限还没有授予，需要在这里写申请权限的代码
@@ -90,12 +93,9 @@ public class DrawViewActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     TAKE_PHONE);
-
-        }else { //权限已经被授予，在这里直接写要执行的相应方法即可
+        } else { //权限已经被授予，在这里直接写要执行的相应方法即可
             takePhoto();
         }
-
-
     }
 
     private void takePhoto() {
