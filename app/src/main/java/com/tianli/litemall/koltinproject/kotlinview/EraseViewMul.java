@@ -25,6 +25,7 @@ public class EraseViewMul extends View {
     private float mPreX, mPreY;
     private Canvas mSelfCanvas;
     private Xfermode mXferMode;
+    private Paint mGrilPaint;
 
     public EraseViewMul(Context context) {
         this(context, null);
@@ -43,30 +44,36 @@ public class EraseViewMul extends View {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(Color.GREEN);
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(10);
+        mPaint.setStrokeWidth(30);
 
         mPath = new Path();
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
 
-        mBitmapSrc = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
+        mBitmapSrc = BitmapFactory.decodeResource(getResources(), R.drawable.swapforfun);
 
         mBitmapDST = Bitmap.createBitmap(mBitmapSrc.getWidth(), mBitmapSrc.getHeight(), Bitmap.Config.ARGB_8888);
 
         mSelfCanvas = new Canvas(mBitmapDST);
 
         mXferMode = new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT);
+
+        mGrilPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mGrilPaint.setTextSize(36);
+        mGrilPaint.setColor(Color.BLUE);
+        mGrilPaint.setStrokeWidth(16);
+        mGrilPaint.setStrokeJoin(Paint.Join.ROUND);
+
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mPath.moveTo(event.getX(), event.getY());
                 mPreX = event.getX();
-                mPreX = event.getY();
+                mPreY = event.getY();
                 return true;
             case MotionEvent.ACTION_MOVE:
                 float endX = (mPreX + event.getX()) / 2;
@@ -86,7 +93,8 @@ public class EraseViewMul extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        
+
+        canvas.drawText("恭喜你 喜提 海边 别墅一套",300,100,mGrilPaint);
         //离屏缓冲
         int layerId = canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
         mSelfCanvas.drawPath(mPath,mPaint);
