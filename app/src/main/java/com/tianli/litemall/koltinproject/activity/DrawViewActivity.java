@@ -11,20 +11,30 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.lzy.okgo.OkGo;
 import com.tianli.litemall.koltinproject.MainActivity;
 import com.tianli.litemall.koltinproject.R;
 import com.tianli.litemall.koltinproject.kotlinview.BeizerWaveView;
 
 import java.lang.ref.WeakReference;
+
+import okhttp3.Dispatcher;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 public class DrawViewActivity extends AppCompatActivity {
 
@@ -35,15 +45,12 @@ public class DrawViewActivity extends AppCompatActivity {
     private static final int CHOOSE_PHONE = 2;
     private ImageView imageView;
 
-
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawview);
         imageView = findViewById(R.id.imageview);
-
-        BeizerWaveView beizerWaveView = findViewById(R.id.beizerView);
-        beizerWaveView.startAnim();
 
         findViewById(R.id.textview).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,8 +58,13 @@ public class DrawViewActivity extends AppCompatActivity {
                 startAdd();
             }
         });
+        TextView textView = findViewById(R.id.textview);
 
-        beizerWaveView.setWaveColor();
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        layoutParams.bottomMargin = 300;
+
+        textView.setLayoutParams(layoutParams);
+
 
     }
 
@@ -101,6 +113,16 @@ public class DrawViewActivity extends AppCompatActivity {
     private void takePhoto() {
         Intent intentToTakePhoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivity(intentToTakePhoto);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
     }
 
 }

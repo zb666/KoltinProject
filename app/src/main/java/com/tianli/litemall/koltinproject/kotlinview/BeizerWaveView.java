@@ -53,7 +53,7 @@ public class BeizerWaveView extends View {
         setLayerType(View.LAYER_TYPE_NONE, null);
 
         mTopBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_footer_loading);
-        mBottomBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_arrow);
+        mBottomBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bbb);
 
     }
 
