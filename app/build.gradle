@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+//引入的插件要和gradle-plugins的目录保持一致 引入的插件加入前缀就好了
+//apply plugin: 'com.immoc.zb666'
+
 android {
     compileSdkVersion 28
     defaultConfig {
