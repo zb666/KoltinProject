@@ -11,6 +11,7 @@ import com.tianli.litemall.koltinproject.bean.KoltinJava
 import com.tianli.litemall.koltinproject.bean.WashMachine
 import kotlinx.android.synthetic.main.koltin_demo.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class KoltinDemoActivity : AppCompatActivity(), View.OnClickListener {
@@ -19,28 +20,20 @@ class KoltinDemoActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (tvKoltin != null) {
-            Glide.with(this)
-                    .load("https://img3.doubanio.com//view//photo//s_ratio_poster//public//p579729551.webp")
-                    .into(ivKoltin)
+            Glide.with(this).load("https://img3.doubanio.com//view//photo//s_ratio_poster//public//p579729551.webp").into(ivKoltin)
             mList.add("厉害了，我的哥")
             for (s in mList) {
                 Log.d("Bob", s)
             }
         }else if (v == ivKoltin){
-
         }
-
         runKoltin()
-
-
     }
 
     private fun runKoltin() {
         //参数也是 需要申明可空和非可空
         val washMachine = WashMachine("Haier", 1)
         washMachine.openDoor()
-
-
         val koltinJava = KoltinJava("name",123)
         koltinJava.name
         koltinJava.age

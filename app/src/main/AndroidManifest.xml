@@ -20,6 +20,7 @@
         <activity android:name=".activity.KoltinDemoActivity"/>
         <activity android:name=".activity.PopActivity" />
         <activity android:name=".activity.DemoActivity" />
+        <activity android:name=".activity.SVGActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

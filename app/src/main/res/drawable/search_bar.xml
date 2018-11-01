@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:drawable="@drawable/searchbar"
+    tools:ignore="NewApi">
+
+    <!--通过标签search 寻找Vector中的动画 然后放到自己的anim_searchbar中来进行播放-->
+    <target
+        android:animation="@animator/anim_searchbar"
+        android:name="search"/>
+
+    <target
+        android:animation="@animator/anim_searchbar"
+        android:name="bar"/>
+
+
+</animated-vector>
